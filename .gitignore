@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# datasets
+data/
+datasets/
+cifar-10-batches-py/
+
+# environments
+micromamba/
+conda/
+.env/
+
+# logs
+*.log
+
+# model outputs
+*.pth
+*.pt
+*.ckpt
+
+# generated artifacts
+task1/models/
+task2/models/
+task1/*.png
+task2/*.png
