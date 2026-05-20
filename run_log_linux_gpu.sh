@@ -69,7 +69,7 @@ echo "=========================================="
 echo "PYTORCH / CUDA INFORMATION"
 echo "=========================================="
 
-conda run -n comp0197-pt python - << 'EOF'
+conda run -n comp0197-pt python -u - << 'EOF'
 import torch
 
 print("Torch version:", torch.__version__)
@@ -85,9 +85,9 @@ EOF
 
 echo ""
 echo "=========================================="
-echo "TASK 1 TRAINING — conda run -n comp0197-pt python task1/train.py"
+echo "TASK 1 TRAINING — conda run -n comp0197-pt python -u task1/train.py"
 echo "=========================================="
-conda run -n comp0197-pt python task1/train.py
+conda run -n comp0197-pt python -u task1/train.py
 
 echo ""
 echo "=========================================="
@@ -97,9 +97,9 @@ find task1 -type f | sort
 
 echo ""
 echo "=========================================="
-echo "TASK 2 TRAINING — conda run -n comp0197-pt python task2/train.py"
+echo "TASK 2 TRAINING — conda run -n comp0197-pt python -u task2/train.py"
 echo "=========================================="
-conda run -n comp0197-pt python task2/train.py
+conda run -n comp0197-pt python -u task2/train.py
 
 echo ""
 echo "=========================================="
@@ -109,15 +109,15 @@ find task2 -type f | sort
 
 echo ""
 echo "=========================================="
-echo "TASK 1 EVALUATION — conda run -n comp0197-pt python task1/task.py"
+echo "TASK 1 EVALUATION — conda run -n comp0197-pt python -u task1/task.py"
 echo "=========================================="
-conda run -n comp0197-pt python task1/task.py
+conda run -n comp0197-pt python -u task1/task.py
 
 echo ""
 echo "=========================================="
-echo "TASK 2 EVALUATION — conda run -n comp0197-pt python task2/task.py"
+echo "TASK 2 EVALUATION — conda run -n comp0197-pt python -u task2/task.py"
 echo "=========================================="
-conda run -n comp0197-pt python task2/task.py
+conda run -n comp0197-pt python -u task2/task.py
 
 echo ""
 echo "=========================================="
