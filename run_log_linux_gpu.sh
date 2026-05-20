@@ -1,4 +1,10 @@
 #!/bin/bash
+
+export MAMBA_ROOT_PREFIX="$HOME/micromamba"
+export PATH="$HOME/.local/bin:$PATH"
+
+eval "$(~/.local/bin/micromamba shell hook -s bash)"
+
 set -euo pipefail
 
 START_TIME=$(date +%s)
