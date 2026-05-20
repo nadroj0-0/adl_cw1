@@ -23,9 +23,9 @@ df -h /
 
 echo ""
 echo "=========================================="
-echo "CONDA VERSION — conda --version"
+echo "MICROMAMBA VERSION — micromamba --version"
 echo "=========================================="
-conda --version
+micromamba --version
 
 echo ""
 echo "=========================================="
@@ -53,41 +53,41 @@ grep -n "class CNN\|class ResidualBlock\|class SEBlock\|nn.Conv2d\|nn.Linear" ut
 
 echo ""
 echo "=========================================="
-echo "CREATING FRESH ENVIRONMENT — conda create --name comp0197-pt python=3.12 -y"
+echo "CREATING FRESH ENVIRONMENT — micromamba create --name comp0197-pt python=3.12 -y"
 echo "=========================================="
-conda env remove -n comp0197-pt -y || true
-conda create --name comp0197-pt python=3.12 -y
+micromamba env remove -n comp0197-pt -y || true
+micromamba create --name comp0197-pt python=3.12 -y
 
 echo ""
 echo "=========================================="
-echo "INSTALLING PACKAGES — pip install torch torchvision pillow"
+echo "INSTALLING PACKAGES — pip install torch torchvision pillow --index-url https://download.pytorch.org/whl/cu128"
 echo "=========================================="
-conda run -n comp0197-pt pip install torch torchvision pillow
+micromamba run -n comp0197-pt pip install torch torchvision pillow --index-url https://download.pytorch.org/whl/cu128
 
 echo ""
 echo "=========================================="
 echo "PYTORCH / CUDA INFORMATION"
 echo "=========================================="
 
-conda run -n comp0197-pt python -u - << 'EOF'
+micromamba run -n comp0197-pt python -u - << 'EOF'
 import torch
 
-print("Torch version:", torch.__version__)
-print("CUDA available:", torch.cuda.is_available())
+print("Torch version:", torch.__version__, flush=True)
+print("CUDA available:", torch.cuda.is_available(), flush=True)
 
 if torch.cuda.is_available():
-    print("CUDA version:", torch.version.cuda)
-    print("GPU count:", torch.cuda.device_count())
-    print("GPU name:", torch.cuda.get_device_name(0))
+    print("CUDA version:", torch.version.cuda, flush=True)
+    print("GPU count:", torch.cuda.device_count(), flush=True)
+    print("GPU name:", torch.cuda.get_device_name(0), flush=True)
 else:
     print("Running on CPU")
 EOF
 
 echo ""
 echo "=========================================="
-echo "TASK 1 TRAINING — conda run -n comp0197-pt python -u task1/train.py"
+echo "TASK 1 TRAINING — micromamba run -n comp0197-pt python -u task1/train.py"
 echo "=========================================="
-conda run -n comp0197-pt python -u task1/train.py
+micromamba run -n comp0197-pt python -u task1/train.py
 
 echo ""
 echo "=========================================="
@@ -97,9 +97,9 @@ find task1 -type f | sort
 
 echo ""
 echo "=========================================="
-echo "TASK 2 TRAINING — conda run -n comp0197-pt python -u task2/train.py"
+echo "TASK 2 TRAINING — micromamba run -n comp0197-pt python -u task2/train.py"
 echo "=========================================="
-conda run -n comp0197-pt python -u task2/train.py
+micromamba run -n comp0197-pt python -u task2/train.py
 
 echo ""
 echo "=========================================="
@@ -109,15 +109,15 @@ find task2 -type f | sort
 
 echo ""
 echo "=========================================="
-echo "TASK 1 EVALUATION — conda run -n comp0197-pt python -u task1/task.py"
+echo "TASK 1 EVALUATION — micromamba run -n comp0197-pt python -u task1/task.py"
 echo "=========================================="
-conda run -n comp0197-pt python -u task1/task.py
+micromamba run -n comp0197-pt python -u task1/task.py
 
 echo ""
 echo "=========================================="
-echo "TASK 2 EVALUATION — conda run -n comp0197-pt python -u task2/task.py"
+echo "TASK 2 EVALUATION — micromamba run -n comp0197-pt python -u task2/task.py"
 echo "=========================================="
-conda run -n comp0197-pt python -u task2/task.py
+micromamba run -n comp0197-pt python -u task2/task.py
 
 echo ""
 echo "=========================================="
