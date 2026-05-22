@@ -66,9 +66,28 @@ micromamba create --name comp0197-pt python=3.12 -y
 
 echo ""
 echo "=========================================="
-echo "INSTALLING PACKAGES — pip install torch torchvision pillow --index-url https://download.pytorch.org/whl/cu128"
+echo "INSTALLING PACKAGES — pip install torch torchvision pillow --index-url https://download.pytorch.org/whl/cu126"
 echo "=========================================="
-micromamba run -n comp0197-pt pip install torch torchvision pillow --index-url https://download.pytorch.org/whl/cu128
+micromamba run -n comp0197-pt pip install torch==2.12.0+cu126 torchvision==0.27.0+cu126 pillow==12.2.0 --index-url https://download.pytorch.org/whl/cu126
+
+echo "=========================================="
+echo "VERIFYING TORCH ENVIRONMENT"
+echo "=========================================="
+
+micromamba run -n comp0197-pt python -c "
+import torch
+import torchvision
+import PIL
+import platform
+
+print('Torch:', torch.__version__)
+print('Torchvision:', torchvision.__version__)
+print('Pillow:', PIL.__version__)
+print('CUDA available:', torch.cuda.is_available())
+print('CUDA version:', torch.version.cuda)
+print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU')
+print('Python:', platform.python_version())
+"
 
 echo ""
 echo "=========================================="
